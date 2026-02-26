@@ -26,9 +26,9 @@ builder.Services.AddScoped<IPenaltyService, PenaltyService>();
 builder.Services.AddScoped<PenaltyJobService>();
 builder.Services.AddExceptionHandler<ExceptionHandler>();
 builder.Services.AddHttpClient<ILoanAccountClientService,LoanAccountClientService>(client=>
-client.BaseAddress=new Uri("https://loanledgerservice-cnbngdcjgcc9ctgz.canadacentral-01.azurewebsites.net/api/"));
+client.BaseAddress=new Uri("https://loanaccountservice-e2d2dpg8ccc7gjfk.canadacentral-01.azurewebsites.net/api/"));
 builder.Services.AddHttpClient<IEmiScheduleClientService, EmiScheduleClientService>(client =>
-    client.BaseAddress = new Uri("https://emischedularservice-hjgrbxhkd3awecc5.canadacentral-01.azurewebsites.net/api/")
+    client.BaseAddress = new Uri("https://emischedulingservice-djd3dwabewc0epac.canadacentral-01.azurewebsites.net/api/")
 );
 
 builder.Services.AddHangfire(options => options.UseSqlServerStorage(builder.Configuration.GetConnectionString("dbconn")));
