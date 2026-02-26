@@ -42,14 +42,14 @@ app.UseHangfireDashboard("/hangfire", new DashboardOptions
 RecurringJob.AddOrUpdate<PenaltyJobService>(
     "daily penalty",
      job => job.CalculatePenaltyAsync(),
-    "25 14 * * *",
+    "44 14 * * *",
     TimeZoneInfo.FindSystemTimeZoneById("India Standard Time")
     );
 
 RecurringJob.AddOrUpdate<InterestAccrualJobService>(
     "daily interest accrual",
     job => job.CalculateInterestAccrual(),
-    "25 14 * * *",
+    "44 14 * * *",
     TimeZoneInfo.FindSystemTimeZoneById("India Standard Time")
 
     );
