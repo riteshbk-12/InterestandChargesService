@@ -35,7 +35,7 @@ builder.Services.AddHangfire(options => options.UseSqlServerStorage(builder.Conf
 builder.Services.AddHangfireServer();
 var app = builder.Build();
 
-app.UseHangfireDashboard();
+app.UseHangfireDashboard("/hangfire");
 RecurringJob.AddOrUpdate<PenaltyJobService>(
     "daily penalty",
      job => job.CalculatePenaltyAsync(),
