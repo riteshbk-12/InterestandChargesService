@@ -33,6 +33,18 @@ builder.Services.AddHttpClient<IEmiScheduleClientService, EmiScheduleClientServi
 
 builder.Services.AddHangfire(options => options.UseSqlServerStorage(builder.Configuration.GetConnectionString("dbconn")));
 builder.Services.AddHangfireServer();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularDev", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:4200") // Angular dev URL
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 app.UseHangfireDashboard("/hangfire", new DashboardOptions
@@ -63,7 +75,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("AllowAngularDev");
 app.UseAuthorization();
 
 app.MapControllers();
